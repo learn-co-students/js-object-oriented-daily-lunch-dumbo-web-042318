@@ -25,6 +25,18 @@ const Neighborhood = (function(){
       });
     }
 
+    meals(){
+      let mealsArr = [];
+
+      for(let delivery of this.deliveries()){
+        mealsArr.push(store.meals.find(meal => {
+          return delivery.mealId === meal.id
+        }));
+      }
+      const result = [...new Set(mealsArr)]
+      return result;
+    }
+
   }
 })();
 
@@ -100,12 +112,9 @@ const Meal = (function(){
     }
 
     static byPrice(){
-      const sorted = store.meals.sort(function(a, b){
-        if
+      return store.meals.sort(function(a, b){
+        return a.price < b.price;
       });
-
-      console.log(sorted);
-
     }
 
   }
@@ -117,6 +126,7 @@ const Delivery = (function(){
   let deliveryId = 0;
 
   return class {
+
     constructor(mealId, neighborhoodId, customerId){
       this.mealId = mealId;
       this.neighborhoodId = neighborhoodId;
@@ -124,6 +134,25 @@ const Delivery = (function(){
       this.id = ++deliveryId;
       store.deliveries.push(this);
     }
+
+    meal(){
+      return store.meals.find(meal => {
+        return meal.id === this.mealId;
+      });
+    }
+
+    customer(){
+      return store.customers.find(customer => {
+        return customer.id === this.customerId;
+      });
+    }
+
+    neighborhood(){
+      return store.neighborhoods.find(neighborhood => {
+        return neighborhood.id === this.neighborhoodId;
+      });
+    }
+
   }
 
 })();
