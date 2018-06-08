@@ -34,7 +34,7 @@ You will be modeling the following:
 
 #### Neighborhood class:
 
-* `new Neighborhood()` - initialized with `name`. It returns an object that has attributes of `id` and `name`
+--* `new Neighborhood()` - initialized with `name`. It returns an object that has attributes of `id` and `name`
 * `deliveries()` - returns a list of all deliveries placed in a neighborhood
 * `customers()` - returns all of the customers that live in a particular neighborhood
 * `meals()` - returns a **unique** list of meals that have been ordered in a particular neighborhood (you might want to do this one last)
